@@ -60,6 +60,7 @@ def new_entry(request, topic_id):
     else:
         #POST data submitted; process data.
         form = EntryForm(data=request.POST)
+        check_topic_owner(topic, request)
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
